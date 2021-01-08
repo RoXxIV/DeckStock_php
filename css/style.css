@@ -1,0 +1,178 @@
+/*-_-_-_-_-_-_-_-_-_-_POLICES-_-_-_-_-_-_-_-_-_-_*/
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+#logo,
+select,
+#annonces,
+#description button,
+footer,
+#article span,
+#article #prix,
+#article text,
+#article h2 {
+  font-family: "Bebas Neue", cursive;
+}
+/*-_-_-_-_-_-_-_-_-_-_VARIABLES-_-_-_-_-_-_-_-_-_-_*/
+:root {
+  --rouge: #8c0b0a;
+  --bleu: #1b272c;
+  --blanc: #ebebeb;
+  --gris: #f1f5f7;
+}
+/*-_-_-_-_-_-_-_-_-_-_GLOBAL-_-_-_-_-_-_-_-_-_-_*/
+body {
+  color: var(--bleu);
+}
+.hide {
+  display: none;
+}
+/*-_-_-_-_-_-_-_-_-_-_HEADER-_-_-_-_-_-_-_-_-_-_*/
+/*___-NAV-___*/
+header {
+  background: var(--bleu);
+  font-size: 30px;
+}
+#logo {
+  font-size: 40px;
+}
+#logo span {
+  color: var(--rouge);
+}
+/*-WISHLIST-*/
+#wishList {
+  position: relative;
+}
+#wishList span {
+  /*compteur*/
+  background-color: var(--rouge);
+  font-size: 15px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  left: 25px;
+  top: -5px;
+  position: absolute;
+}
+/*pop-up-info*/
+header nav #bloc-icon {
+  position: relative;
+}
+#popup-info {
+  width: 120%;
+  font-size: 15px;
+  letter-spacing: 2px;
+  position: absolute;
+  background: var(--bleu);
+  padding: 10px;
+  z-index: 2;
+  border-top: 2px solid var(--blanc);
+  box-shadow: 0px 10px 20px var(--bleu);
+}
+#popup-info hr {
+  background-color: var(--blanc);
+}
+#popup-info button {
+  font-size: 15px;
+  font-weight: 600;
+}
+.popup-info {
+  display: none;
+}
+/*-_-_-_-_-_-_-_-_-_-_FILTRES-_-_-_-_-_-_-_-_-_-_*/
+select {
+  width: 90%;
+  padding: 5px 10px;
+  margin: 10px 0px;
+  border: none;
+  background: var(--gris);
+  position: relative;
+  /*cache la fleche par defaut*/
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-position-x: 90%;
+}
+/*-_-_-_-_-_-_-_-_-_-_ANNONCES-_-_-_-_-_-_-_-_-_-_*/
+/*-_-_-_-_-_-_-_-_-_-_FOOTER-_-_-_-_-_-_-_-_-_-_*/
+footer {
+  position: relative;
+  background-image: url(../img/Vector\ 1.svg);
+  background-position: center;
+  background-size: cover;
+  padding: 150px 0px;
+}
+footer ul {
+  position: absolute;
+  left: 10%;
+  top: 70%;
+}
+/*question/reponse*/
+#questions {
+  padding: 60px 0px;
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+}
+.tabs a {
+  font-size: 20px;
+  font-weight: 400;
+}
+.tabs .active a::before {
+  content: "* ";
+}
+.tabs {
+  border-right: 0.5px solid var(--gris);
+}
+.tabs li {
+  margin: 15px 0px;
+}
+.fade {
+  opacity: 0;
+  transition: opacity 1s;
+}
+.fade.in {
+  opacity: 1;
+}
+/*-_-_-_-_-_-_-_-_-_-_ARTICLE PAGE-_-_-_-_-_-_-_-_-_-_*/
+#description button {
+  border: 1.5px solid var(--bleu);
+}
+#article h2 {
+  font-size: 25px;
+}
+#article ul {
+  font-size: 18px;
+}
+#article img {
+  width: 100%;
+  border: 1.5px solid var(--bleu);
+  border-radius: 10px;
+}
+#article .fa-heart {
+  font-size: 25px;
+}
+#article span,
+#article #prix {
+  font-style: italic;
+  font-size: 20px;
+}
+#article button {
+  font-size: 20px;
+}
+#article text {
+  font-size: 50px;
+}
+/*Autre produits*/
+#moreArticle img {
+  width: 80%;
+  border: 1.5px solid var(--bleu);
+  border-radius: 10px;
+  margin: 10px 10px;
+}
+/*-_-_-_-_-_-_-_-_-_-_MEDIA QUERIES-_-_-_-_-_-_-_-_-_-_*/
+/*Small devices (landscape phones, 576px and up)_*/
+@media (max-width: 767.98px) {
+  #popup-info {
+    width: 100%;
+  }
+}
