@@ -1,5 +1,15 @@
 <!--HEADER-->
-<?php include 'includes/header.php'; ?>
+<?php include 'includes/header.php';
+
+
+$sql = "SELECT annonce_skate.Id_annonce,annonce_skate.cheminPhoto,collection.nom,largeur.taille,annonce_skate.prix
+FROM annonce_skate
+JOIN largeur on largeur.Id_largeur = annonce_skate.Id_largeur
+JOIN collection on collection.Id_collection = annonce_skate.Id_collection
+LIMIT 8";
+$results = $connection->query($sql);
+
+ ?>
 
 <!--Banniere-->
 <div class="d-flex justify-content-center py-4">
@@ -88,110 +98,23 @@
 <section id="annonces" class=" container mt-5 mx-auto">
   <h2 class="mb-5 ml-4">Annonces récentes</h2>
   <div class="row text-center">
-    <div class="col-lg-3 col-md-4 col-sm-6">
+    <?php
+    foreach ($results->fetchAll(PDO::FETCH_ASSOC) as $result) {
+        echo' <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="mb-4">
         <div>
-          <a href="article.php">
-            <img class="img-fluid" src="img/planches/SantaCruz-ScreamingHand-white.jpg" alt="">
+          <a href="article.php?id='.$result['Id_annonce'].'">
+            <img class="img-fluid" src="'.$result['cheminPhoto'].'" alt="'.$result['nom'].'">
           </a>
         </div>
         <div>
-          <p class="mb-1 mt-2">Screaming Hand <span>8.25"</span></p>
-          <span>69.99 <sup>eur</sup></span>
+          <p class="mb-1 mt-2">'.$result['nom'].'<span>'.$result['taille'].'</span></p>
+          <span>'.$result['prix'].'<sup>eur</sup></span>
         </div>
       </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="#">
-            <img class="img-fluid" src="img/planches/135417-0-Flip-TeamHKD825.jpg" alt="planche santa cruz">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">Flip Team HKD <span>8.25" green</span></p>
-          <span>64.99 <sup>eur</sup></span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="#">
-            <img class="img-fluid" src="img/planches/TeamBrandLogo1.jpg" alt="planche santa cruz">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">Team Brand Logo <span>8.25" red</span></p>
-          <span>74.99 <sup>eur</sup></span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="#">
-            <img class="img-fluid" src="img/planches/Spectrum.jpg" alt="planche santa cruz">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">Spectrum <span>8" black</span></p>
-          <span>59.99 <sup>eur</sup></span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="#">
-            <img class="img-fluid" src="img/planches/124313-0-ToyMachine-BennettValentines85.jpg" alt="planche santa cruz">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">Valentines <span>8.5" Bennett</span></p>
-          <span>54.99 <sup>eur</sup></span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="#">
-            <img class="img-fluid" src="img/planches/144131-0-PlanB-ShecklerDeco825.jpg" alt="planche santa cruz">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">Deco <span>8.5" white</span></p>
-          <span>64.99 <sup>eur</sup></span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="#">
-            <img class="img-fluid" src="img/planches/139420-0-JartSkateboards-Classic825.jpg" alt="planche santa cruz">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">Classic <span>8.25" blue</span></p>
-          <span>49.99 <sup>eur</sup></span>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="#">
-            <img class="img-fluid" src="img/planches/144120-0-Flip-MultiOdyssey8.jpg" alt="planche santa cruz">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">Odyssey <span>8.375" yellow</span></p>
-          <span>59.99 <sup>eur</sup></span>
-        </div>
-      </div>
-    </div>
+    </div>';
+    }
+    ?>
   </div>
 </section>
 <hr class="my-5">

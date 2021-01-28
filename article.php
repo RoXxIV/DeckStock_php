@@ -1,29 +1,46 @@
 <!--HEADER-->
-<?php include 'includes/header.php'; ?>
-
+<?php include 'includes/header.php';
+if (isset($_GET['id'])) {
+    $annonceId = $_GET['id'];
+} else {
+    echo 'rip';
+}
+$results = $connection->prepare("SELECT annonce_skate.Id_annonce,annonce_skate.datePublication,annonce_skate.longueur,annonce_skate.description,annonce_skate.cheminPhoto,annonce_skate.prix,shape.designation AS shape,concave.designation AS concave,largeur.taille,collection.nom AS collection,marque.nom AS marque
+from annonce_skate
+JOIN shape on shape.Id_shape = annonce_skate.Id_shape
+JOIN concave on annonce_skate.Id_concave = concave.Id_concave
+JOIN largeur on largeur.Id_largeur = annonce_skate.Id_largeur
+JOIN collection on collection.Id_collection = annonce_skate.Id_collection
+JOIN marque on marque.Id_marque = collection.Id_marque
+WHERE annonce_skate.Id_annonce = :annonceId");
+$results->bindParam(':annonceId', $annonceId, PDO::PARAM_INT);
+$results->execute();
+//var_dump($results);
+?>
 <!--banniere-->
 <div class="d-flex justify-content-center py-4">
   <img class="img-fluid" src="img/banniere_article.jpg" alt="">
 </div>
 <a href="index.php"><i class="fas fa-arrow-left"></i> retour a l'accueil</a>
-
+<?php foreach ($results->fetchAll(PDO::FETCH_ASSOC) as $result) {
+    echo '
 <!--Article Detaillé------------>
 <section id="article" class="d-flex flex-column justify-content-center mt-5 flex-md-row align-items-md-end">
   <!--Photo-->
   <div class="mb-5 col-6 mx-auto col-md-4">
-    <img src="img/planches/SantaCruz-ScreamingHand-white.jpg" alt="">
+    <img src="'.$result['cheminPhoto'].'" alt="">
     <p class="mt-3">Grip jessup inclus*</p>
   </div>
   <!--Description-->
   <div id="description" class="col-md-6">
     <div class="d-flex justify-content-center">
-      <h2>Santa Cruz - Screaming Hand </h2>
+      <h2>'.$result['marque'].' - '.$result['collection'].'</h2>
       <i class="far fa-heart text-5xl ml-5" role="button"></i>
     </div>
     <div>
       <ul class="mt-3">
         <li>
-          <p>Santa Cruz est spécialisé en la forme taper tip, inspirés par les formes pointues des années 90 et ils combinent cette forme avec la largeur popsicle d'aujourd'hui.</p>
+          <p>'.$result['description'].'</p>
         </li>
         <li>
           <svg width="350" xmlns="http://www.w3.org/2000/svg" viewBox="-15 0 1150 505">
@@ -41,7 +58,7 @@
             </text>
             <text x="28.69">
               <tspan x="575" y="45">
-                <tspan>31.9</tspan>
+                <tspan>'.number_format($result['longueur'], 2, '.', ' ').'</tspan>
               </tspan>
             </text>
             <!--Largeur-->
@@ -52,33 +69,34 @@
             </text>
             <text x="28.69">
               <tspan x="25" y="240">
-                <tspan>8.5"</tspan>
+                <tspan>'.number_format($result['taille'], 1, '.', ' ').'"</tspan>
               </tspan>
             </text>
           </svg>
         </li>
         <li>
-          <p>Concave : <span>Moyen</span></p>
+          <p>Concave : <span>'.$result['concave'].'</span></p>
         </li>
         <li>
-          <p>Shape : <span>Standard</span></p>
+          <p>Shape : <span>'.$result['shape'].'</span></p>
         </li>
       </ul>
       <hr class="my-3">
       <ul>
         <li>
-          <p>poster le : <span>27/12/2020</span></p>
+          <p>poster le : <span>'.$result['datePublication'].'</span></p>
         </li>
         <li>
-          <p>No. de produit : <span>51</span></p>
+          <p>No. de produit : <span>'.$result['Id_annonce'].'</span></p>
         </li>
         <li>
-          <p id="prix">69.99 <sup>EUR</sup></p>
+          <p id="prix">'.$result['prix'].' <sup>EUR</sup></p>
         </li>
       </ul>
-      <button class="btn rounded">ça m'interessse</button>
+      <button class="btn rounded">ça m\'interessse</button>
     </div>
-</section>
+</section>';
+} ?>
 <hr class="my-5">
 <!--Ceci pourrait vous intéresser-->
 <section id="moreArticle">

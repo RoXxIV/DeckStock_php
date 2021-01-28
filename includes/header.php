@@ -1,3 +1,15 @@
+<?php
+require_once('includes/Config.php');
+$myConfig = new Config();
+
+try {
+    //$connection = new PDO('mysql:host=localhost;dbname=deckstock;', 'root', '');
+    $connection = new PDO($myConfig->dsn, $myConfig->user, $myConfig->pass);
+} catch (PDOException $e) {
+    echo 'Connexion échouée : ' . $e->getMessage();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
