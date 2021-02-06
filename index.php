@@ -1,15 +1,13 @@
 <!--HEADER-->
-<?php include 'includes/header.php';
+<?php
+  include 'includes/header.php';
+/*
+  recupere les 8 dernier skate mis en vente
+*/
+  $sql = "SELECT * FROM `annonceindex`";
+  $results = $connection->query($sql);
 
-
-$sql = "SELECT annonce_skate.Id_annonce,annonce_skate.cheminPhoto,collection.nom,largeur.taille,annonce_skate.prix
-FROM annonce_skate
-JOIN largeur on largeur.Id_largeur = annonce_skate.Id_largeur
-JOIN collection on collection.Id_collection = annonce_skate.Id_collection
-LIMIT 8";
-$results = $connection->query($sql);
-
- ?>
+?>
 
 <!--Banniere-->
 <div class="d-flex justify-content-center py-4">
@@ -17,107 +15,40 @@ $results = $connection->query($sql);
 </div>
 
 <!--Filtres-->
-<section id="filtres" class="container-fluid">
-  <div id="blocBrand" class="row">
-    <!--marque liste-->
-    <div class="col-6 col-sm-4 col-md-3 test">
-      <select class="form-select">
-        <option selected>Marque</option>
-        <option value="id_marque">Almost
-    </div>
-    <option value="id_marque">Baker
-  </div>
-  <option value="id_marque">Blind</div>
-  <option value="id_marque">Element</div>
-  <option value="id_marque">Enjoy</div>
-  <option value="id_marque">Flip</div>
-  <option value="id_marque">Girl</div>
-  <option value="id_marque">Jart</div>
-  <option value="id_marque">Plan b</div>
-  <option value="id_marque">Santa cruz</div>
-  <option value="id_marque">Toy machine</div>
-  <option value="id_marque">Zero</div>
-    </select>
-    </div>
-    <!--collection liste-->
-    <div id="blocCollection" class="col-6 col-sm-4 col-md-3">
-      <select class="form-select">
-        <option selected>Collection</option>
-        <option value="id_collection">SCreaming Hand</option>
-        <option value="id_collection">Classic Dot</option>
-        <option value="id_collection">Roskop</option>
-        <option value="id_collection">Steadfast</option>
-      </select>
-    </div>
-    <!--largeur liste-->
-    <div id="blocLargeur" class="col-6 col-sm-4 col-md-3">
-      <select class="form-select">
-        <option selected>Largeur</option>
-        <option value="id_largeur">7.5"</option>
-        <option value="id_largeur">7.6"</option>
-        <option value="id_largeur">7.75</option>
-        <option value="id_largeur">8"</option>
-        <option value="id_largeur">8.125"</option>
-        <option value="id_largeur">8.25"</option>
-        <option value="id_largeur">8.5"</option>
-        <option value="id_largeur">9"</option>
-        <option value="id_largeur">9.5"</option>
-        <option value="id_largeur">10"</option>
-      </select>
-    </div>
-    <!--concave liste-->
-    <div id="blocConcave" class="col-6 col-sm-4 col-md-3">
-      <select class="form-select">
-        <option selected>Concave</option>
-        <option value="id_concave">Leger</option>
-        <option value="id_concave">Moyen</option>
-        <option value="id_concave">Forte</option>
-      </select>
-    </div>
-    <!--concave liste-->
-    <div id="blocShape" class="col-6 col-sm-4 col-md-3">
-      <select class="form-select">
-        <option selected>Shape</option>
-        <option value="id_shape">Standard</option>
-        <option value="id_shape">Shaped</option>
-        <option value="id_shape">Full</option>
-      </select>
-    </div>
-    <!--prix-->
-    <div id="blocPrix" class="col-6 col-sm-4 col-md-3">
-      <select class="form-select">
-        <option selected>Prix</option>
-        <option value="prix">par ordre croissant</option>
-        <option value="prix">par ordre decroissant</option>
-      </select>
-    </div>
-    </div>
-</section>
+<?php
+  include 'includes/filtres.php';
+?>
 
 <!--ANNONCES------------>
 <section id="annonces" class=" container mt-5 mx-auto">
+
   <h2 class="mb-5 ml-4">Annonces récentes</h2>
+
   <div class="row text-center">
     <?php
-    foreach ($results->fetchAll(PDO::FETCH_ASSOC) as $result) {
-        echo' <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="mb-4">
-        <div>
-          <a href="article.php?id='.$result['Id_annonce'].'">
-            <img class="img-fluid" src="'.$result['cheminPhoto'].'" alt="'.$result['nom'].'">
-          </a>
-        </div>
-        <div>
-          <p class="mb-1 mt-2">'.$result['nom'].'<span>'.$result['taille'].'</span></p>
-          <span>'.$result['prix'].'<sup>eur</sup></span>
-        </div>
-      </div>
-    </div>';
-    }
+      foreach ($results->fetchAll(PDO::FETCH_ASSOC) as $result) {
+          echo' 
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="mb-4">
+              <div>
+                <a href="article.php?id='.$result['Id_annonce'].'&id_marque='.$result['Id_marque'].'">
+                  <img class="img-fluid" src="'.$result['picture'].'" alt="skate'.$result['marque'].'">
+                </a>
+              </div>
+              <div>
+                <p class="mb-1 mt-2">'.$result['marque'].'</p>
+                <span>'.$result['price'].' <sup>eur</sup></span>
+              </div>
+            </div>
+          </div>';
+      }
     ?>
   </div>
+
 </section>
+
 <hr class="my-5">
+
 <!--Section question/reponse-->
 <section class="container">
   <div id="questions" class="row flex-column align-items-center flex-md-row">
@@ -177,4 +108,6 @@ $results = $connection->query($sql);
 </section>
 
 <!--FOOTER-->
-<?php include 'includes/footer.php'; ?>
+<?php
+  include 'includes/footer.php';
+?>

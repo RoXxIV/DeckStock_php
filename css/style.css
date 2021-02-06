@@ -169,6 +169,12 @@ footer ul {
   border-radius: 10px;
   margin: 10px 10px;
 }
+/*-_-_-_-_-_-_-_-_-_-_LoGin-_-_-_-_-_-_-_-_-_-_*/
+#loginForm {
+  background-image: url(../img/login_form.jpg);
+  background-position: center;
+  padding: 100px 50px;
+}
 /*-_-_-_-_-_-_-_-_-_-_MEDIA QUERIES-_-_-_-_-_-_-_-_-_-_*/
 /*Small devices (landscape phones, 576px and up)_*/
 @media (max-width: 767.98px) {

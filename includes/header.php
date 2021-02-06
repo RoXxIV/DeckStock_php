@@ -19,6 +19,8 @@ try {
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/259/skateboard_1f6f9.png
+">
     <script src="https://kit.fontawesome.com/fc338e43d0.js"></script>
     <title>DeckStock</title>
 </head>
@@ -38,7 +40,7 @@ try {
                         </li>
                         <!--Acces Profil-->
                         <li>
-                            <a href="#"><i class="fas fa-user mx-5" role="button"></i></a>
+                            <a href="login.php"><i class="fas fa-user mx-5" role="button"></i></a>
                         </li>
                         <!--Info-->
                         <li>

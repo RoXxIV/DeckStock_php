@@ -1,4 +1,4 @@
-/**equivalent des fonction jquerry fadeout() fadein()
+/**equivalent des fonctions jquery fadeout() fadein()
  * ***************************************************************************/
 function fadeOut(el) {
     el.style.opacity = 1;
