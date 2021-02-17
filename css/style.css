@@ -25,6 +25,7 @@ body {
 .hide {
   display: none;
 }
+
 /*-_-_-_-_-_-_-_-_-_-_HEADER-_-_-_-_-_-_-_-_-_-_*/
 /*___-NAV-___*/
 header {
@@ -76,6 +77,7 @@ header nav #bloc-icon {
 .popup-info {
   display: none;
 }
+
 /*-_-_-_-_-_-_-_-_-_-_FILTRES-_-_-_-_-_-_-_-_-_-_*/
 select {
   width: 90%;
@@ -162,6 +164,24 @@ footer ul {
 #article text {
   font-size: 50px;
 }
+#card-brand {
+  transition: all 550ms ease;
+  backface-visibility: hidden;
+}
+#card:hover #card-brand {
+  -webkit-transform: scale(2.5);
+  -ms-transform: scale(2.5);
+  transform: scale(2.5);
+}
+#card-img {
+  transition: all 700ms ease;
+  backface-visibility: hidden;
+}
+#card:hover #card-img {
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
 /*Autre produits*/
 #moreArticle img {
   width: 80%;
@@ -173,7 +193,39 @@ footer ul {
 #loginForm {
   background-image: url(../img/login_form.jpg);
   background-position: center;
-  padding: 100px 50px;
+  background-repeat: no-repeat;
+  padding: 140px 50px;
+}
+#loginForm input {
+  padding: 15px;
+}
+#loginForm button {
+  background-color: var(--bleu);
+  color: var(--blanc);
+  font-size: 14px;
+  /*border-color: var(--bleu);*/
+  padding: 7.5px 15px;
+}
+/*-_-_-_-_-_-_-_-_-_-_Account-_-_-_-_-_-_-_-_-_-_*/
+.grey {
+  background-color: var(--gris);
+  width: 80%;
+  margin: auto;
+}
+#info-perso form {
+  padding: 30px;
+}
+#info-perso button {
+  border: 1.5px solid var(--bleu);
+  font-size: 1.3rem;
+}
+#profil-link {
+  border: 1.5px solid var(--bleu);
+  font-weight: 400;
+  padding: 0.375rem 0.75rem;
+  font-size: 2rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
 }
 /*-_-_-_-_-_-_-_-_-_-_MEDIA QUERIES-_-_-_-_-_-_-_-_-_-_*/
 /*Small devices (landscape phones, 576px and up)_*/
@@ -181,4 +233,32 @@ footer ul {
   #popup-info {
     width: 100%;
   }
+}
+
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 19px 22px;
+  transition: all 0.2s ease;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 80%;
+  left: 13%;
+  display: block;
+  background-color: var(--bleu);
+  width: 0px;
+  height: 1.5px;
+  transition: all 0.3s ease;
+}
+.cta span {
+  position: relative;
+
+  line-height: 18px;
+
+  vertical-align: middle;
+}
+.cta:hover::before {
+  width: 75%;
 }

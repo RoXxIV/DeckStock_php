@@ -4,8 +4,14 @@
 /*
   recupere les 8 dernier skate mis en vente
 */
-  $sql = "SELECT * FROM `annonceindex`";
+$countCard = 12;
+  $sql = "SELECT annonce_skate.Id_annonce,annonce_skate.prix AS price,annonce_skate.cheminPhoto AS picture,marque.Id_marque,marque.nom AS brand
+FROM `annonce_skate`
+JOIN collection on collection.Id_collection = annonce_skate.Id_collection
+JOIN marque on marque.Id_marque = collection.Id_marque
+ORDER BY datePublication DESC";
   $results = $connection->query($sql);
+  $cards = $results->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -17,6 +23,15 @@
 <!--Filtres-->
 <?php
   include 'includes/filtres.php';
+  if (isset($_POST['brand'])) {
+      $selectedBrand = $_POST['brand'];
+
+      /* $cards = array_filter($cards, function () {
+           return $cards['brand'] == $_POST['brand'];
+       });
+       */
+  }
+
 ?>
 
 <!--ANNONCES------------>
@@ -26,22 +41,22 @@
 
   <div class="row text-center">
     <?php
-      foreach ($results->fetchAll(PDO::FETCH_ASSOC) as $result) {
-          echo' 
-          <div class="col-lg-3 col-md-4 col-sm-6">
+        for ($i = 0; $i < $countCard; $i++) {
+            echo' 
+          <div id="card" class="col-lg-3 col-md-4 col-sm-6">
             <div class="mb-4">
-              <div>
-                <a href="article.php?id='.$result['Id_annonce'].'&id_marque='.$result['Id_marque'].'">
-                  <img class="img-fluid" src="'.$result['picture'].'" alt="skate'.$result['marque'].'">
+              <div id="card-img" class"btn-1">
+                <a href="article.php?id='.$cards[$i]['Id_annonce'].'&id_marque='.$cards[$i]['Id_marque'].'">
+                  <img class="img-fluid" src="'.$cards[$i]['picture'].'" alt="skate'.$cards[$i]['brand'].'">
                 </a>
               </div>
               <div>
-                <p class="mb-1 mt-2">'.$result['marque'].'</p>
-                <span>'.$result['price'].' <sup>eur</sup></span>
+                <p id="card-brand" class="mb-1 mt-2">'.$cards[$i]['brand'].'</p>
+                <span>'.$cards[$i]['price'].' <sup>eur</sup></span>
               </div>
             </div>
           </div>';
-      }
+        }
     ?>
   </div>
 

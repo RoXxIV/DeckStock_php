@@ -61,8 +61,10 @@
   <img class="img-fluid" src="img/banniere_article.jpg" alt="">
 </div>
 
-<a href="index.php"><i class="fas fa-arrow-left"></i> retour a l'accueil</a>
-
+  <a href="index.php" class="cta">
+    <span><i class="fas fa-arrow-left"></i> Retour a l'accueil</span>
+  </a>
+  
 <!--Article Detaillé------------>
 <?php
   foreach ($results->fetchAll(PDO::FETCH_ASSOC) as $result) {
@@ -135,7 +137,7 @@
                 <p id="prix">'.$result['price'].' <sup>EUR</sup></p>
               </li>
             </ul>
-            <button class="btn rounded">ça m\'interessse</button>
+            <button class="btn rounded">Je Reserve</button>
           </div>
       </section>';
   }

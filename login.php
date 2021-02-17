@@ -6,6 +6,9 @@ include 'includes/header.php';
 <div class="d-flex justify-content-center py-4">
   <img class="img-fluid" src="img/loginBan.jpg" alt="">
 </div>
+<a href="index.php" class="cta">
+    <span><i class="fas fa-arrow-left"></i> Retour a l'accueil</span>
+  </a>
 <div class="row my-5">
 <form id="loginForm" class="col-10 col-md-6 mx-auto">
   <div class="form-group d-flex">
@@ -16,7 +19,7 @@ include 'includes/header.php';
     <label for="exampleInputPassword1"><i class="fas fa-lock mx-5"></i></label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
   </div>
-  <button type="submit" class="btn btn-primary"> Se connecter</button>
+  <button type="submit" class="btn mt-5 ml-5"> Se connecter</button>
 </form>
 </div>
 

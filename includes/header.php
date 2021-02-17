@@ -35,15 +35,15 @@ try {
                 <div id="bloc-icon" class="col-12 col-sm-5">
                     <ul class="nav justify-content-center justify-content-md-end">
                         <!--wishlist icone-->
-                        <li>
+                        <li id="wishList-icon">
                             <i id="wishList" class="fas fa-heart" role="button"><span id="Wishcount">0</span></i>
                         </li>
                         <!--Acces Profil-->
-                        <li>
+                        <li id="user-icon">
                             <a href="login.php"><i class="fas fa-user mx-5" role="button"></i></a>
                         </li>
                         <!--Info-->
-                        <li>
+                        <li id="question-icon">
                             <i class="far fa-question-circle" role="button"></i>
                         </li>
                     </ul>
